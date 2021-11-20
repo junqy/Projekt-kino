@@ -1,21 +1,37 @@
-import { movies } from '../data'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Movie from './Movie'
-
 import styled from 'styled-components'
+
 
 const Container = styled.div`
     padding: 20px;
-    display: flex;
 `
 
 const Movies = (props) => {
-    //const {movies} = props;
+    const {movies, addMovie} = props
+    
+    const [movieList, setMovieList] = useState(movies);
+    const [title, setTitle] = useState('');
+    const [duration, setDuration] = useState('');
+
+    const onClick = () => {
+        const movie = {
+            id: movieList.length + 1,
+            title: title,
+            duration: duration
+        }
+        setMovieList([...movieList, movie])
+        addMovie(movieList)
+    }
+
     return (
         <Container>
-            {movies.map(item =>(
+            {movieList.map(item =>(
                 <Movie item= {item} key={item.id}/>
             ))}
+                <input type="text" name="title" placeholder="Movie Title" onChange={e => setTitle(e.target.value)}/>
+                <input type="text" name="duration" placeholder="Movie Duration" onChange={e => setDuration(e.target.value)} />
+                <button onClick={onClick}>klik</button>
         </Container>
     )
 }

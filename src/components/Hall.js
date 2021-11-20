@@ -1,16 +1,15 @@
 import React from 'react'
-
 import styled from 'styled-components'
 
 const Container = styled.div`
 `
 
-const Movie = ({item}) => {
+const Hall = ({item}) => {
     return (
         <Container>
-            {item.title} {item.duration} minutes
+            {item.id}. {item.capacity}
         </Container>
     )
 }
 
-export default Movie
+export default Hall
